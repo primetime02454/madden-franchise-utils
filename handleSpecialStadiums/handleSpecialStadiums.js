@@ -11,7 +11,10 @@ const stadiumBinaryCodes = {
   "Wembley":      "10000000000000001001110001001010", //London, England
   "Allianz Arena":"10000000010110110110010110100100", //Munich, Germany
   "Frankfurt":    "10000000000000011111111111111111", // Frankfurt, Germany (Deustche Bank Park)
-  "Estadio Azteca": "10000000000000001111011001011101" //Azteca, Mexico
+  "Estadio Azteca": "10000000000000001111011001011101", //Azteca, Mexico
+  "Olympiastadion Berlin": "10000000101101111010100100110001", //Berlin,Germany
+  "Santiago Bernabéu Stadium": "10000000101101111010100100110010", //Madrid,Spain
+  "Dublin Stadium": "10000000101101111010100100110000" //Dublin,Ireland
 };
 
 // Per-year stadium assignment mapping
@@ -106,22 +109,20 @@ const stadiumAssignmentsByYear = {
   },
   2025: { 
     0:  [ null, { stadium: "São Paulo" } ], // Week 1 Game 2 (Brazil) Chiefs vs Chargers
-    //**** Missing Dublin Game ****** (Vikings vs Steelers)
+    3:  [ null, { stadium: "Dublin Stadium" } ], // Week 4 Game 2 (Ireland) Vikings vs Steelers
     4:  [ null, { stadium: "Tottenham Hotspur" } ], // Week 5 Game 2 (London) Vikings vs Browns
     5:  [ null, { stadium: "Tottenham Hotspur" } ], // Week 6 Game 2(London) Broncos vs Jets
     6:  [ null, { stadium: "Wembley" } ], // Week 7 Game 2 (London) Rams vs. Jags
-    9:  [ null, { stadium: "Frankfurt" } ] // Week 10 Game 2 (Germany) Falcons vs Colts **Wrong Stadium**
-    // ***** Missing Madrid Game **** (Commanders vs Dolphins)
+    9:  [ null, { stadium: "Olympiastadion Berlin" } ], // Week 10 Game 2 (Germany) Falcons vs Colts
+   10:  [ null, { stadium: "Santiago Bernabéu Stadium" } ] // Week 11 Game 2 (Madrid) Commanders vs Dolphins
   }
 };
 
 console.log("This program assigns international stadiums to retro regular season games.");
-console.log(" Only run during Regular Season period. Supported: Madden 25 Franchise Files.");
+console.log(" Only run during Regular Season period. Supported: Madden 26 Franchise Files.");
 
 // Set up franchise file
-const validGameYears = [
-  FranchiseUtils.YEARS.M25
-];
+const validGameYears = [FranchiseUtils.YEARS.M26];
 const franchise = FranchiseUtils.init(validGameYears, {
   isAutoUnemptyEnabled: autoUnempty
 });
@@ -200,17 +201,8 @@ const seasonGames = scheduleTable.records.filter(g =>
     }
   }
 
-        // ask before saving
-      const answer = prompt(
-      "Would you like to save your changes? Enter yes to save, or no to quit without saving: ").trim().toLowerCase();
+          await FranchiseUtils.saveFranchiseFile(franchise);
+            
+  FranchiseUtils.EXIT_PROGRAM();
 
-      if (answer === "yes") {
-      await FranchiseUtils.saveFranchiseFile(franchise);
-          console.log("\n💾 Stadium assignments saved successfully.");
-      } else {
-        console.log("\nYour franchise file has not been saved.");
-      }
-
-      // finally exit
-      FranchiseUtils.EXIT_PROGRAM();
 });
