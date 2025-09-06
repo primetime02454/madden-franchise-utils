@@ -12,13 +12,14 @@ const TRANSFER_SCHEDULE_FUNCTIONS = require('./transferScheduleFromJson');
 const autoUnempty = true;
 
 console.log("In this program, you can insert any previous year's NFL schedule into your Franchise File.");
-console.log("This only works with Madden 24 and 25 Franchise Files, and if your Franchise file is in the PreSeason.");
+console.log("This only works with Madden 24, 25, and 26 Franchise Files, and if your Franchise file is in the PreSeason.");
 
 
 // Set up franchise file
 const validGames = [
 	FranchiseUtils.YEARS.M24,
-	FranchiseUtils.YEARS.M25
+	FranchiseUtils.YEARS.M25,
+  FranchiseUtils.YEARS.M26
 ];
 const franchise = FranchiseUtils.init(validGames, {isAutoUnemptyEnabled: autoUnempty});
 const tables = FranchiseUtils.getTablesObject(franchise);
