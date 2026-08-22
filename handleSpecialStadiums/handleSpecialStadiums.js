@@ -14,9 +14,9 @@ const stadiumBinaryCodes = {
   "Estadio Azteca": "10000000000000001111011001011101", //Azteca, Mexico
   "Olympiastadion Berlin": "10000000101101111010100100110001", //Berlin,Germany
   "Santiago Bernabéu Stadium": "10000000101101111010100100110010", //Madrid,Spain
-  "Dublin Stadium": "10000000101101111010100100110000" //Dublin,Ireland
-  //Melbourne,Austrailia
-  //Paris,France
+  "Dublin Stadium": "10000000101101111010100100110000", //Dublin,Ireland
+  "Melbourne": "10000000110000001011110000101011",//Melbourne,Austrailia - M27
+  //Paris,France - M27
 };
 
 // Per-year stadium assignment mapping
@@ -119,7 +119,7 @@ const stadiumAssignmentsByYear = {
    10:  [ null, { stadium: "Santiago Bernabéu Stadium" } ] // Week 11 Game 2 (Madrid) Commanders vs Dolphins
   },
   2026: { //(Madden 27-NEW)
-    //Week 1 Game 2 (Austraila) 49ers vs Rams 
+    0:  [ null, { stadium: "Melbourne" } ], //Week 1 Game 2 (Austraila) 49ers vs Rams
     2:  [ null, null, null, null, null, null, null, null, null, null, null, null, { stadium: "São Paulo" } ], // Week 3 Game 2 (Brazil) Cowboys vs Ravens
     3:  [ null, { stadium: "Tottenham Hotspur" } ], // Week 4 Game 2 (London) Colts vs Commanders
     4:  [ null, { stadium: "Tottenham Hotspur" } ], // Week 5 Game 2 (London) Eagles vs Jaguars
@@ -132,10 +132,10 @@ const stadiumAssignmentsByYear = {
 };
 
 console.log("This program assigns international stadiums to retro regular season games.");
-console.log(" Only run during Regular Season period. Supported: Madden 26 Franchise Files.");
+console.log(" Only run during Regular Season period. Supported: Madden 27 Franchise Files.");
 
 // Set up franchise file
-const validGameYears = [FranchiseUtils.YEARS.M26];
+const validGameYears = [FranchiseUtils.YEARS.M27];
 const franchise = FranchiseUtils.init(validGameYears, {
   isAutoUnemptyEnabled: autoUnempty
 });
