@@ -4,7 +4,8 @@ const prompt = require('prompt-sync')();
 const validGameYears = [
     FranchiseUtils.YEARS.M24,
     FranchiseUtils.YEARS.M25,
-    FranchiseUtils.YEARS.M26
+    FranchiseUtils.YEARS.M26,
+    FranchiseUtils.YEARS.M27
 ];
 
 console.log(`This program will set the current season year. Madden ${FranchiseUtils.formatListString(validGameYears)} franchise files are supported.`);
