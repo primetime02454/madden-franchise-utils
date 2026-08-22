@@ -1,1 +1,0 @@
-pkg -c pkgConfig.json handleRetroPicks.js -o handleRetroPicks.exe
