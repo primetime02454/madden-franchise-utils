@@ -45,7 +45,8 @@ const DRAFT_LENGTH = 223;
 
 const validGameYears = [
   FranchiseUtils.YEARS.M25,
-  FranchiseUtils.YEARS.M26
+  FranchiseUtils.YEARS.M26,
+  FranchiseUtils.YEARS.M27
 ];
 
 console.log("This program will adjust draft picks for retro franchise files. This program MUST be run in the Offseason.");
