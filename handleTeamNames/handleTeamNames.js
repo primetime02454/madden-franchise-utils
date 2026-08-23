@@ -1,7 +1,7 @@
 const FranchiseUtils = require('../Utils/FranchiseUtils');
 const prompt = require('prompt-sync')({ sigint: true });
 
-const validGameYears = [FranchiseUtils.YEARS.M25 , FranchiseUtils.YEARS.M26];
+const validGameYears = [FranchiseUtils.YEARS.M25 , FranchiseUtils.YEARS.M26 , FranchiseUtils.YEARS.M27];
 console.log("This program will adjust team names based on historical changes.");
 
 // Initialize franchise and tables
