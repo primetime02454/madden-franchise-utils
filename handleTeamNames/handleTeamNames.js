@@ -1,7 +1,7 @@
 const FranchiseUtils = require('../Utils/FranchiseUtils');
 const prompt = require('prompt-sync')({ sigint: true });
 
-const validGameYears = [FranchiseUtils.YEARS.M25 , FranchiseUtils.YEARS.M26 , FranchiseUtils.YEARS.M27];
+const validGameYears = [FranchiseUtils.YEARS.M27];
 console.log("This program will adjust team names based on historical changes.");
 
 // Initialize franchise and tables
@@ -37,19 +37,19 @@ function promptForWashingtonName() {
 
 const teamNameChanges = {
   // Example format: 'team index': [{year range, column, new value}]
-  '5': [
+  '5': [ //Browns
     { yearStart: 1996, yearEnd: 1998, column: 'LongName', value: 'Inactive' },
     { yearStart: 1996, yearEnd: 1998, column: 'DisplayName', value: 'Team' },
     { yearStart: 1999, yearEnd: null, column: 'LongName', value: 'Cleveland' },
     { yearStart: 1999, yearEnd: null, column: 'DisplayName', value: 'Browns' }
   ],
-  '6': [
+  '6': [ //Bucs
     { yearStart: 1969, yearEnd: 1975, column: 'LongName', value: 'Inactive' },
     { yearStart: 1969, yearEnd: 1975, column: 'DisplayName', value: 'Team' },
     { yearStart: 1976, yearEnd: null, column: 'LongName', value: 'Tampa Bay' },
     { yearStart: 1976, yearEnd: null, column: 'DisplayName', value: 'Buccaneers' }
   ],
-  '7': [
+  '7': [ //Cardinals
     { yearStart: 1969, yearEnd: 1987, column: 'LongName', value: 'St.Louis' },
     { yearStart: 1969, yearEnd: 1987, column: 'ShortName', value: 'STL' },
     { yearStart: 1988, yearEnd: 1993, column: 'LongName', value: 'Phoenix' },
@@ -57,36 +57,36 @@ const teamNameChanges = {
     { yearStart: 1994, yearEnd: null, column: 'LongName', value: 'Arizona' },
     { yearStart: 1994, yearEnd: null, column: 'ShortName', value: 'ARI' }
   ],
-  '10': [
+  '10': [ //Chargers
     { yearStart: 1969, yearEnd: 2016, column: 'LongName', value: 'San Diego' },
     { yearStart: 1969, yearEnd: 2016, column: 'ShortName', value: 'SD' },
     { yearStart: 2017, yearEnd: null, column: 'LongName', value: 'Los Angeles' },
     { yearStart: 2017, yearEnd: null, column: 'ShortName', value: 'LAC' }
   ],
-  '12': [
+  '12': [ // Colts
     { yearStart: 1969, yearEnd: 1983, column: 'LongName', value: 'Baltimore' },
     { yearStart: 1969, yearEnd: 1983, column: 'ShortName', value: 'BAL' },
     { yearStart: 2017, yearEnd: null, column: 'LongName', value: 'Indianapolis' },
     { yearStart: 2017, yearEnd: null, column: 'ShortName', value: 'IND' }
   ],
-  '13': [
+  '13': [ // Commanders
     { yearStart: 1969, yearEnd: 2019, column: 'DisplayName', value: 'Redskins' },
     { yearStart: 2020, yearEnd: 2021, column: 'DisplayName', value: 'Football Team' },
     { yearStart: 2022, yearEnd: null, column: 'DisplayName', value: 'Commanders' }
   ],
-  '21': [
+  '20': [ // Jaguars
     { yearStart: 1969, yearEnd: 1994, column: 'LongName', value: 'Inactive' },
     { yearStart: 1969, yearEnd: 1994, column: 'DisplayName', value: 'Team' },
     { yearStart: 1995, yearEnd: null, column: 'LongName', value: 'Jacksonville' },
     { yearStart: 1995, yearEnd: null, column: 'DisplayName', value: 'Jaguars' }
   ],
-  '26': [
+  '24': [ //Panthers
     { yearStart: 1969, yearEnd: 1994, column: 'LongName', value: 'Inactive' },
     { yearStart: 1969, yearEnd: 1994, column: 'DisplayName', value: 'Team' },
     { yearStart: 1995, yearEnd: null, column: 'LongName', value: 'Carolina' },
     { yearStart: 1995, yearEnd: null, column: 'DisplayName', value: 'Panthers' }
   ],
-  '28': [
+  '26': [ // Raiders
     { yearStart: 1969, yearEnd: 1981, column: 'LongName', value: 'Oakland' }, // Oakland Raiders (City)
     { yearStart: 1969, yearEnd: 1981, column: 'ShortName', value: 'OAK' },  //Abbreviation
     { yearStart: 1982, yearEnd: 1994, column: 'LongName', value: 'Los Angeles' }, //Los Angeles Raiders (City)
@@ -96,7 +96,7 @@ const teamNameChanges = {
     { yearStart: 2020, yearEnd: null, column: 'LongName', value: 'Las Vegas' }, // Oakland Raiders (City)
     { yearStart: 2020, yearEnd: null, column: 'ShortName', value: 'LV' }  //Abbreviation
   ],
-  '29': [
+  '27': [ //Rams
     { yearStart: 1969, yearEnd: 1994, column: 'LongName', value: 'Los Angeles' },
     { yearStart: 1969, yearEnd: 1994, column: 'ShortName', value: 'RAM' },
     { yearStart: 1995, yearEnd: 2015, column: 'LongName', value: 'St. Louis' },
@@ -104,25 +104,25 @@ const teamNameChanges = {
     { yearStart: 2016, yearEnd: null, column: 'LongName', value: 'Los Angeles' },
     { yearStart: 2016, yearEnd: null, column: 'ShortName', value: 'LAR' }
   ],
-  '30': [
+  '28': [ //Ravens
     { yearStart: 1969, yearEnd: 1995, column: 'LongName', value: 'Inactive' },
     { yearStart: 1969, yearEnd: 1995, column: 'DisplayName', value: 'Team' },
     { yearStart: 1996, yearEnd: null, column: 'LongName', value: 'Baltimore' },
     { yearStart: 1996, yearEnd: null, column: 'DisplayName', value: 'Ravens' }
   ],
-  '32': [
+  '30': [ //Seahawks
     { yearStart: 1969, yearEnd: 1975, column: 'LongName', value: 'Inactive' },
     { yearStart: 1969, yearEnd: 1975, column: 'DisplayName', value: 'Team' },
     { yearStart: 1976, yearEnd: null, column: 'LongName', value: 'Seattle' },
     { yearStart: 1976, yearEnd: null, column: 'DisplayName', value: 'Seahawks' }
   ],
-  '34': [
+  '32': [ //Texans
     { yearStart: 1969, yearEnd: 2001, column: 'LongName', value: 'Inactive' },
     { yearStart: 1969, yearEnd: 2001, column: 'DisplayName', value: 'Team' },
     { yearStart: 2002, yearEnd: null, column: 'LongName', value: 'Houston' },
     { yearStart: 2002, yearEnd: null, column: 'DisplayName', value: 'Texans' }
   ],
-  '35': [
+  '33': [ //Titns
     { yearStart: 1969, yearEnd: 1996, column: 'LongName', value: 'Houston' },
     { yearStart: 1969, yearEnd: 1996, column: 'ShortName', value: 'HOU' },
     { yearStart: 1969, yearEnd: 1998, column: 'DisplayName', value: 'Oilers' },
