@@ -12,9 +12,6 @@ const TRANSFER_SCHEDULE_FUNCTIONS = require('./transferScheduleFromJson');
 const autoUnempty = true;
 
 const validGames = [
-	FranchiseUtils.YEARS.M24,
-	FranchiseUtils.YEARS.M25,
-  FranchiseUtils.YEARS.M26,
   FranchiseUtils.YEARS.M27
 ];
 
