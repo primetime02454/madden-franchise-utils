@@ -12,7 +12,9 @@ const TRANSFER_SCHEDULE_FUNCTIONS = require('./transferScheduleFromJson');
 const autoUnempty = true;
 
 const validGames = [
-  FranchiseUtils.YEARS.M27
+	FranchiseUtils.YEARS.M24,
+	FranchiseUtils.YEARS.M25,
+  FranchiseUtils.YEARS.M26
 ];
 
 console.log("In this program, you can insert any previous year's NFL schedule into your Franchise File.");
@@ -23,8 +25,8 @@ console.log(`This only works with Madden ${FranchiseUtils.formatListString(valid
 const franchise = FranchiseUtils.init(validGames, {isAutoUnemptyEnabled: autoUnempty});
 const tables = FranchiseUtils.getTablesObject(franchise);
 
-let minYear = 1969;
-let maxYear = 2026;
+let minYear = 1970;
+let maxYear = 2025;
 // Dynamically determine min and max year from folder
 const files = fs.readdirSync(directoryPath);
 const years = files.map(file => {

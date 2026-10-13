@@ -23,6 +23,11 @@ const MADDEN_TIMES = [570,780,965,985,1150,1215,1220,1340];
 function setFranchise(franchiseObj) {
   franchise = franchiseObj;
   tables = FranchiseUtils.getTablesObject(franchiseObj);
+  if(franchise.schema.meta.gameYear >= FranchiseUtils.YEARS.M27)
+  {
+    const teamLookupPath27 = path.resolve(__dirname, 'lookupFiles', `teamLookup_27.json`);
+    teamLookup = JSON.parse(fs.readFileSync(teamLookupPath27, 'utf8'));
+  }
 }
 
 function convertTimeToMinutes(timeString) {
