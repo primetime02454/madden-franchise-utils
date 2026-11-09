@@ -4,6 +4,9 @@ const path = require("path");
 const INPUT_FILE = path.join(__dirname, "rawCoachVisuals.json");
 const OUTPUT_FILE = path.join(__dirname, "coachVisualsLookup.json");
 
+const PRO_HEAD_SUFFIX = "_c_pro";
+const UNIQUE_HEAD_PLACEHOLDER = "MustBeUnique";
+
 function resolveCharacterBodyType(bodyType) {
   switch (bodyType) {
     case 1:
@@ -17,6 +20,19 @@ function resolveCharacterBodyType(bodyType) {
   }
 }
 
+function resolveAssetName(coach) {
+  if (coach.assetName) return coach.assetName;
+
+  const genericHeadName = coach.genericHeadName;
+  if (typeof genericHeadName === "string" && genericHeadName.toLowerCase().endsWith(PRO_HEAD_SUFFIX)) {
+    coach.assetName = genericHeadName;
+    coach.genericHeadName = UNIQUE_HEAD_PLACEHOLDER;
+    return coach.assetName;
+  }
+
+  return null;
+}
+
 function reformatCoachVisuals(inputJson) {
   const output = {};
   const seenAssets = new Set();
@@ -25,10 +41,11 @@ function reformatCoachVisuals(inputJson) {
 
   for (const coachId of Object.keys(coachMap)) {
     const coach = coachMap[coachId];
-    const assetName = coach.assetName;
+    const assetName = resolveAssetName(coach);
+    const genHead = coach.genericHeadName || "";
 
     if (!assetName) {
-      console.warn(`Coach ${coachId} missing assetName, skipping.`);
+      console.warn(`Coach ${coachId} - ${genHead} missing assetName, skipping.`);
       continue;
     }
 
@@ -83,6 +100,7 @@ function reformatCoachVisuals(inputJson) {
     // ---- Build output ----
     output[assetName] = {
       //...(coach.bodyType !== undefined && { bodyType: coach.bodyType }),
+      ...(coach.skinTone !== undefined && coach.skinTone !== null && { skinTone: coach.skinTone }),
       loadouts: [
         ...(coachOnFieldLoadout
           ? [
